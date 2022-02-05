@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mina's to-do app</title>
+</head>
+<body>
+
+    <h1>to-do</h1>
+
+    <form action="/add" method="POST">
+        <div>
+            <label for="title">do the thing</label>
+            <br />
+            <input type="text" name="title" placeholder="Enter to-do item">
+            <br />
+            <button type="submit">add</button>
+        </div>
+
+    </form>
+
+    {% for todo in todo_list %}
+        <p>{{ todo.id }}: {{ todo.title}}
+        {% if not todo.complete %}
+            <span>not complete</span>
+        {% else %}
+            <span>complete</span>
+        {% endif %}
+
+        <a href="#">update</a>, 
+        <a href="#">delete</a>
+        </p>
+    {% endfor %}
+    
+</body>
+</html>
