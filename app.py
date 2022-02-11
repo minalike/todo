@@ -30,6 +30,24 @@ def add():
     return redirect(url_for("index"))
 
 
+@app.route("/update/<int:todo_id>")
+def update(todo_id):
+    """Query database for record and update `complete` value"""
+    task = Todo.query.filter_by(id=todo_id).first()
+    task.complete = not task.complete
+    db.session.commit()
+    return redirect(url_for("index"))
+
+
+@app.route("/delete/<int:todo_id>")
+def delete(todo_id):
+    """Query database for record and delete record."""
+    task = Todo.query.filter_by(id=todo_id).first()
+    db.session.delete(task)
+    db.session.commit()
+    return redirect(url_for("index"))
+
+
 @app.route("/about")
 def about():
     return "About"
