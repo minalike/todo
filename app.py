@@ -15,7 +15,7 @@ class Todo(db.Model):
     
 @app.route("/")
 def index():
-    # show all todos
+    """Show all to-do items."""
     todo_list =Todo.query.all()
     return render_template("base.html", todo_list=todo_list)
 
